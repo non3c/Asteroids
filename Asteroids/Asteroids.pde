@@ -6,11 +6,10 @@ PImage backGround;
 
 void setup() {
   myShip = new Ship();
-  imageMode(CENTER);
+  //imageMode(CENTER);
   size(1200, 800);
   myBullets = new ArrayList<Bullet>();
   backGround = loadImage("SpaceBackground.jpg");
-  //backGround.resize(width, height);
   image(backGround, 0, 0);
 }
 
@@ -20,6 +19,7 @@ void draw() {
    myShip.show();
    myShip.act();
    
+   fill(0,20);
    for (int i = 0; i < myBullets.size(); i ++) {
      Bullet blt = myBullets.get(i);
      blt.show();

@@ -13,8 +13,9 @@ class Bullet {
 }
 
 void show() {
-  stroke(255);
-  fill(255, 80);
+  stroke(#640F00);
+  strokeWeight(1);
+  fill(#F74802);
   ellipse(pos.x, pos.y, 10, 10);
   
 }
