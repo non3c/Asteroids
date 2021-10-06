@@ -14,6 +14,7 @@ final int GAMEOVER = 3;
 
 
 void setup() {
+
   myShip = new Ship();
   //if (mode == GAME) {
   leftTurn = new PImage[4];
@@ -34,9 +35,9 @@ void setup() {
   size(1200, 800);
   myObject = new ArrayList<GameObject>();
   myObject.add(myShip);
-  backGround = loadImage("SpaceBackground.jpg");
+  backGround = loadImage("SpaceBackground.png");
  
-  image(backGround, 0, 0);
+  image(backGround, width/2, height/2);
 }
 
 
@@ -54,7 +55,7 @@ void draw() {
      println("Error: Mode = " + mode);
   }
 */
-   image(backGround, 0, 0);
+   image(backGround, width/2, height/2);
    myShip.show();
    myShip.act();
    
@@ -63,6 +64,10 @@ void draw() {
      GameObject obj = myObject.get(i);
      obj.show();
      obj.act();
+     
+     if (obj.lives == 0) {
+       myObject.remove(i);
+     }
    }
 }
 
@@ -72,8 +77,7 @@ void keyPressed() {
  if (keyCode == 'A')     leftkey = true;
  if (keyCode == 'D')    rightkey = true;
  if (keyCode == ' ')    spacekey = true;  
- if (keyCode == LEFT)   turnLeft = true;
- if (keyCode == RIGHT) turnRight = true;
+
 }
 
 void keyReleased() {
@@ -82,8 +86,7 @@ void keyReleased() {
  if (keyCode == 'A')     leftkey = false;
  if (keyCode == 'D')    rightkey = false;
  if (keyCode == ' ')    spacekey = false;    
-  if (keyCode == LEFT)   turnLeft = false;
- if (keyCode == RIGHT)  turnRight = false;
+
   
   
 }

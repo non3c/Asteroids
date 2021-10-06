@@ -15,5 +15,9 @@ class Asteroid extends GameObject {
   
   void act() {
    super.act(); 
+   
+   for (int i; i < myObjects.size(); i ++) {
+     
+   }
   }
 }

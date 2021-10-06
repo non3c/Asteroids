@@ -1,12 +1,14 @@
 class Bullet extends GameObject {
    
-
+  int killTimer;
 
   Bullet() {
+   killTimer = 120;
    lives = 1; 
    pos = new PVector (myShip.pos.x, myShip.pos.y);
    vel = new PVector (myShip.dir.x, myShip.dir.y);
-   vel.setMag(10);
+   vel.setMag(12.5);
+   vel.add(myShip.vel);
 }
 
 void show() {
@@ -18,8 +20,12 @@ void show() {
 }
 
 void act() {
-  pos.add(vel);
-   
+  super.act();
+//if (pos.y < -50 || pos.y > height+50 || pos.x < -50 || pos.x > width+50) {lives = 0;}
+   killTimer--;
+   if (killTimer == 0) {
+     lives = 0; 
+   }
 }
 
 }

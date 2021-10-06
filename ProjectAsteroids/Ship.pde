@@ -1,4 +1,4 @@
-PImage shipFig;
+PImage shipFigure;
 
 
 class Ship extends GameObject{
@@ -9,6 +9,7 @@ class Ship extends GameObject{
  
  //Constructors
  Ship() {
+   imageMode(CENTER);
    lives = 3; 
    pos = new PVector(width/2, height/2);
    vel = new PVector(0,0);
@@ -18,28 +19,33 @@ class Ship extends GameObject{
  
  //Behaviour function
   void show() {
-   //dir(mouseX, mouseY);
-   shipFig = loadImage("spaceShip.png");
+   shipFigure = loadImage("spaceShip.png");
    pushMatrix();
    translate(pos.x, pos.y);
    rotate(dir.heading());
    noFill();
    stroke(255);
    triangle(-25, -12.5, -25, 12.5, 25, 0);
-  // shipFig;
+   image(shipFigure, 0, 0 );
+   fill(0, 20);
+   rect(0, 0, 5, 5);
+   rect(0, 0, 5, 5);
    
    popMatrix();
   }
   
   void act() {
     super.act();
+    
+    
+    if (vel.mag() > 5) vel.setMag(5);
     if (upkey) vel.add(dir);
     if (downkey) vel.sub(dir);
-    if (leftkey) pos.x = pos.x - 1.5;
-    if (rightkey)  pos.x = pos.x + 1.5;
-    if (turnLeft) dir.rotate( -radians(5) );
-    if (turnRight) dir.rotate( radians(5) );
+    if (!upkey || !downkey) {vel.x = vel.x * 0.995 ; vel.y = vel.y * 0.995;}
+    if (leftkey) dir.rotate( -radians(5) );
+    if (rightkey) dir.rotate( radians(5) ); 
     if (spacekey) myObject.add(new Bullet()); 
   }
+  
   
 }
