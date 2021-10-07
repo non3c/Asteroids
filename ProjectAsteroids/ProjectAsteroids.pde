@@ -1,9 +1,9 @@
 boolean upkey, downkey, leftkey, rightkey, spacekey, turnLeft, turnRight;
 Ship myShip;
 
-PImage[] leftTurn, rightTurn;
+PImage[] shipFigure;
 ArrayList<GameObject> myObject;
-PImage backGround;
+PImage backGround, asteroidsFig;
 
 int mode;
 
@@ -14,28 +14,30 @@ final int GAMEOVER = 3;
 
 
 void setup() {
-
+  rectMode(CENTER);
   myShip = new Ship();
   //if (mode == GAME) {
-  leftTurn = new PImage[4];
-  rightTurn = new PImage[9];
+  shipFigure = new PImage[10];
+  backGround = loadImage("SpaceBackground.png");
+  asteroidsFig = loadImage("AsteroidsFigure.png");
+ 
+
+  
+  
  // }
   
-  for (int i = 0; i<4; i++) {
-    leftTurn[i] = loadImage("spaceShip/frame_"+i+"_delay-0.01s.gif");
-    
-  }
-  
-  
-   for (int i = 5; i<9; i++) {
-    rightTurn[i] = loadImage("spaceShip/frame_"+i+"_delay-0.01s.gif");
+  for (int i = 0; i<10; i++) {
+    shipFigure[i] = loadImage("spaceShip/frame_0"+i+"_delay-0.01s.gif");
     
   }
   
   size(1200, 800);
   myObject = new ArrayList<GameObject>();
   myObject.add(myShip);
-  backGround = loadImage("SpaceBackground.png");
+  myObject.add(new Asteroids());
+
+  
+  
  
   image(backGround, width/2, height/2);
 }
@@ -65,7 +67,7 @@ void draw() {
      obj.show();
      obj.act();
      
-     if (obj.lives == 0) {
+     if (obj.lives <= 0) {
        myObject.remove(i);
      }
    }

@@ -9,19 +9,20 @@ class Bullet extends GameObject {
    vel = new PVector (myShip.dir.x, myShip.dir.y);
    vel.setMag(12.5);
    vel.add(myShip.vel);
+   size = 10;
 }
 
 void show() {
-  stroke(#640F00);
-  strokeWeight(1);
-  fill(#F74802);
-  ellipse(pos.x, pos.y, 10, 10);
+  stroke(#640F00, 80);
+  strokeWeight(5);
+  fill(#F74802, 95);
+  ellipse(pos.x, pos.y, size, size);
   
 }
 
 void act() {
   super.act();
-//if (pos.y < -50 || pos.y > height+50 || pos.x < -50 || pos.x > width+50) {lives = 0;}
+  
    killTimer--;
    if (killTimer == 0) {
      lives = 0; 

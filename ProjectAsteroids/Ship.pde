@@ -1,5 +1,5 @@
-PImage shipFigure;
-
+PImage shipNormal;
+int costume = 5;
 
 class Ship extends GameObject{
  //Instance Variables
@@ -19,17 +19,12 @@ class Ship extends GameObject{
  
  //Behaviour function
   void show() {
-   shipFigure = loadImage("spaceShip.png");
    pushMatrix();
    translate(pos.x, pos.y);
    rotate(dir.heading());
    noFill();
    stroke(255);
-   triangle(-25, -12.5, -25, 12.5, 25, 0);
-   image(shipFigure, 0, 0 );
-   fill(0, 20);
-   rect(0, 0, 5, 5);
-   rect(0, 0, 5, 5);
+   image(shipFigure[costume], 0, 0 );
    
    popMatrix();
   }
@@ -37,13 +32,38 @@ class Ship extends GameObject{
   void act() {
     super.act();
     
-    
+    //movement
     if (vel.mag() > 5) vel.setMag(5);
-    if (upkey) vel.add(dir);
+    
+    if (upkey) {
+       vel.add(dir);
+      myObject.add(new Fire());
+      myObject.add(new Fire());
+      myObject.add(new Fire());
+    }
+    
     if (downkey) vel.sub(dir);
-    if (!upkey || !downkey) {vel.x = vel.x * 0.995 ; vel.y = vel.y * 0.995;}
-    if (leftkey) dir.rotate( -radians(5) );
-    if (rightkey) dir.rotate( radians(5) ); 
+    if (!upkey || !downkey) {vel.x = vel.x * 0.997 ; vel.y = vel.y * 0.997;}
+    
+    //rotation
+    if (leftkey) {
+    dir.rotate( -radians(5) );
+    if ( costume > 0)
+    costume --;
+  };
+    if (rightkey) {
+    dir.rotate( radians(5) );
+    if ( costume > 10)
+    costume ++;
+  }; 
+  if (!leftkey && !rightkey) {
+  if (costume > 5 )
+    costume--;
+    else if (costume <5)
+    costume++;
+  };
+    
+    //bullets
     if (spacekey) myObject.add(new Bullet()); 
   }
   

@@ -1,5 +1,5 @@
 class GameObject {
-  int lives;
+  int lives, size;
    PVector pos;
    PVector vel; 
   
