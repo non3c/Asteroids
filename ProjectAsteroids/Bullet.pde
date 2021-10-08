@@ -1,13 +1,18 @@
 class Bullet extends GameObject {
    
   int killTimer;
+  PVector nudge;
 
   Bullet() {
    killTimer = 120;
    lives = 1; 
    pos = new PVector (myShip.pos.x, myShip.pos.y);
    vel = new PVector (myShip.dir.x, myShip.dir.y);
-   vel.setMag(12.5);
+   nudge = myShip.dir.copy();
+   //nudge.rotate(PI);
+   nudge.setMag(30);
+   pos.add(nudge);
+   vel.setMag(16.5);
    vel.add(myShip.vel);
    size = 10;
 }

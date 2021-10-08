@@ -1,5 +1,5 @@
 PImage shipNormal;
-int costume = 5;
+int costume = 2;
 
 class Ship extends GameObject{
  //Instance Variables
@@ -46,23 +46,31 @@ class Ship extends GameObject{
     if (!upkey || !downkey) {vel.x = vel.x * 0.997 ; vel.y = vel.y * 0.997;}
     
     //rotation
-    if (leftkey) {
-    dir.rotate( -radians(5) );
+    if (leftkey && upkey) {
+    dir.rotate( -radians(0.6) );
+    if ( costume > 0)
+    costume --;
+    } else if (leftkey) {
+    dir.rotate( -radians(3) );
     if ( costume > 0)
     costume --;
   };
-    if (rightkey) {
-    dir.rotate( radians(5) );
-    if ( costume > 10)
+    if (rightkey && upkey) {
+    dir.rotate( radians(0.6) );
+    if ( costume < 4)
+    costume ++;
+    } else if (rightkey) {
+    dir.rotate( radians(3) );
+    if ( costume < 4)
     costume ++;
   }; 
   if (!leftkey && !rightkey) {
-  if (costume > 5 )
+  if (costume > 2 )
     costume--;
-    else if (costume <5)
+    else if (costume < 2)
     costume++;
   };
-    
+    println(costume);
     //bullets
     if (spacekey) myObject.add(new Bullet()); 
   }
