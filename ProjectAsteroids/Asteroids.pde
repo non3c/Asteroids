@@ -1,12 +1,19 @@
 class Asteroids extends GameObject {
   
  Asteroids() {
-  lives = 5;
-  pos = new PVector (random(-50, width+50), random(-50, height+50)); 
+  lives = 10;
+  pos = new PVector (random(0, width), random(0, height)); 
   vel = new PVector (0,1);
   vel.rotate( random(0,TWO_PI));
   size = 200;
-  
+ }
+ 
+ Asteroids(int s, float x, float y) {
+  lives = 5;
+  pos = new PVector (x,y); 
+  vel = new PVector (0,1);
+  vel.rotate( random(0,TWO_PI));
+  size = s;
  }
   
   void show() {
@@ -26,15 +33,17 @@ class Asteroids extends GameObject {
        if ( dist(pos.x, pos.y, obj.pos.x, obj.pos.y) <= size/2 + obj.size) {
         obj.lives = 0;
         lives --;
+        if (lives == 0) {
+        myObject.add(new Asteroids(size/2, pos.x, pos.y));
+        myObject.add(new Asteroids(size/2, pos.x, pos.y));
+        }
         }
       }
- 
+         if (size < 50) {
+          lives = 0;
+         }
        }
-       /*if (lives == 0) {
-       for (int f = 0; f < 11; f +da+) {
-        image(explosionGIF[f], pos.x, pos.y);
-       }
+       
     }
-    */
+    
   }
-}

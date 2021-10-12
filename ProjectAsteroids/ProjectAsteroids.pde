@@ -48,8 +48,12 @@ void setup() {
 
   myObject = new ArrayList<GameObject>();
   myObject.add(myShip);
-  
-  
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+
     
 
   
@@ -77,6 +81,7 @@ void draw() {
    image(backGround[randomBG], width/2, height/2);
    myShip.show();
    myShip.act();
+   myShip.checkCollision();
    
    
     if (asteroidsSpawn == 1) {

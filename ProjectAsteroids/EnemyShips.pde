@@ -1,20 +1,19 @@
-PImage shipNormal;
-int costume = 2;
 
-class Ship extends GameObject{
+
+class EnemyShip extends GameObject{
  //Instance Variables
  PVector dir;
  int shotTimer, threshold;
- int immuneTime;
+
+
  
  //Constructors
- Ship() {
+ EnemyShip() {
    imageMode(CENTER);
-   lives = 3; 
-   pos = new PVector(width/2, height/2);
+   lives = 5; 
+   pos = new PVector(int(random(0, width/2)), int(random(0, height/2)));
    vel = new PVector(0,0);
    dir = new PVector(0,-0.1);
-   immuneTime = 60;
    shotTimer = 0;
    threshold = 30;
  }
@@ -82,34 +81,11 @@ class Ship extends GameObject{
     
     //bullets
     if (spacekey && shotTimer > threshold) {
-       myObject.add(new Bullet()); 
+       myObject.add(new EnemyBullet()); 
        shotTimer = 0;
       
     }
-    
-    while (immuneTime != 0) {
-    ellipse(pos.x, pos.y, 40, 40);
-    immuneTime -- ;s
-    }
-    
   }
   
-  void checkCollision() {
-   
-    for (int i = 0; i < myObject.size(); i ++) {
-     GameObject obj = myObject.get(i);
-     if (obj instanceof Asteroids) {
-       if ( dist(pos.x, pos.y, obj.pos.x, obj.pos.y) <= size/2 + obj.size) {
-        lives --;
-        immuneTime = 60;
-        }
-      }
- 
-     
-    }
-    
-   
-  
-   }
   
 }
