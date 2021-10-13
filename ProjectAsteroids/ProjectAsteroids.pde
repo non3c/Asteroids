@@ -53,6 +53,7 @@ void setup() {
   myObject.add(new Asteroids());
   myObject.add(new Asteroids());
   myObject.add(new Asteroids());
+  myObject.add(new EnemyShip());
 
     
 
@@ -83,13 +84,11 @@ void draw() {
    myShip.act();
    myShip.checkCollision();
    
-   
-    if (asteroidsSpawn == 1) {
-     myObject.add(new Asteroids());
-    }
+   if (myShip.lives <= 0) {
+       //myShip.remove;
+     }
 
   
-   fill(0,20);
    for (int i = 0; i < myObject.size(); i ++) {
      GameObject obj = myObject.get(i);
      obj.show();

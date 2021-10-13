@@ -20,8 +20,6 @@ class Asteroids extends GameObject {
    noFill();
    noStroke();
    image(asteroidsFig, pos.x, pos.y, size, size);
-   
-   //ellipse(pos.x, pos.y, size, size);
   }
   
   void act() {
@@ -36,6 +34,7 @@ class Asteroids extends GameObject {
         if (lives == 0) {
         myObject.add(new Asteroids(size/2, pos.x, pos.y));
         myObject.add(new Asteroids(size/2, pos.x, pos.y));
+
         }
         }
       }

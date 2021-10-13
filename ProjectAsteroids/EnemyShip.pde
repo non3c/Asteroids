@@ -1,24 +1,24 @@
-PImage shipNormal;
-int costume = 2;
-class Ship extends GameObject{
+
+
+class EnemyShip extends GameObject{
  //Instance Variables
  PVector dir;
- int shotTimer, ShotThreshold;
- int immuneTimer, ImmuneThreshold;
- int size;
+ int shotTimer, threshold;
+ float vx, vy;
+
+
  
  //Constructors
- Ship() {
+ EnemyShip() {
    imageMode(CENTER);
-   lives = 3; 
-   pos = new PVector(width/2, height/2);
+   lives = 5; 
+   pos = new PVector(int(random(0, width/2)), int(random(0, height/2)));
    vel = new PVector(0,0);
-   dir = new PVector(0,-0.1);
-   size = 50;
-   immuneTimer = 0;
-   ImmuneThreshold = 60;
+   dir = new PVector(vx,vy);
+   vx = myShip.pos.x - pos.x;
+   vy = myShip.pos.y - pos.y;
    shotTimer = 0;
-   ShotThreshold = 30;
+   threshold = 30;
  }
  
  
@@ -30,7 +30,6 @@ class Ship extends GameObject{
    noFill();
    stroke(255);
    image(shipFigure[costume], 0, 0);
-   shipFigure[costume].resize(size+50, size+50);
    
    popMatrix();
   }
@@ -39,7 +38,6 @@ class Ship extends GameObject{
     super.act();
     
     shotTimer++;
-    immuneTimer ++;
     
     //movement
     if (vel.mag() > 5) vel.setMag(5);
@@ -85,39 +83,12 @@ class Ship extends GameObject{
   
     
     //bullets
-    if (spacekey && shotTimer > ShotThreshold) {
-       myObject.add(new Bullet()); 
+    if (spacekey && shotTimer > threshold) {
+       myObject.add(new EnemyBullet(/*pos.x, pos.y, vx, vy*/)); 
        shotTimer = 0;
       
     }
-    
-    if (immuneTimer > ImmuneThreshold) { 
-    noFill();
-    stroke(#40BEFF, immuneTimer);
-    strokeWeight(5);
-    ellipse(pos.x, pos.y, size+20, size+20);
-    immuneTimer = 0;
-    }
-    
   }
   
-  void checkCollision() {
-   
-    for (int i = 0; i < myObject.size(); i ++) {
-     GameObject obj = myObject.get(i);
-     
-     if (obj instanceof Asteroids) {
-       if ( dist(pos.x, pos.y, obj.pos.x, obj.pos.y) <= obj.size/2 + size/2) {
-        immuneTimer = 0;
-        vel = vel.sub(dir);
-        }
-      }
- 
-     
-    }
-    
-   
-  
-   }
   
 }
