@@ -21,17 +21,24 @@ void setup() {
   imageMode(CENTER);
   rectMode(CENTER);
   myShip = new Ship();
-  //if (mode == GAME) {
+  frameRate(60);
   shipFigure = new PImage[5];
   explosionGIF = new PImage[11];
   backGround = new PImage[5];
   asteroidsFig = loadImage("Asteroids/AsteroidsFigure.png");
-  enemyShipFig = loadImage("EnemyShipFig.jpg");
+  enemyShipFig = loadImage("EnemyShipFig.png");
+  
+  myObject = new ArrayList<GameObject>();
+  myObject.add(myShip);
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new Asteroids());
+  myObject.add(new EnemyShip());
+  
+  
 
-  
-  
- // }
- //if (mode == GAME) { 
   for (int i = 0; i<5; i++) {
     shipFigure[i] = loadImage("spaceShip/frame_0"+i+"_delay-0.01s.gif");
     
@@ -49,15 +56,8 @@ void setup() {
 
   randomBG = int(random(0, BGnum));
   
-  myObject = new ArrayList<GameObject>();
-  myObject.add(myShip);
-  myObject.add(new Asteroids());
-  myObject.add(new Asteroids());
-  myObject.add(new Asteroids());
-  myObject.add(new Asteroids());
-  myObject.add(new Asteroids());
-  myObject.add(new EnemyShip());
-// }
+  
+ 
   
 
 }

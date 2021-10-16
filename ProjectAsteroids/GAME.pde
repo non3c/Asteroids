@@ -1,9 +1,4 @@
   void game() {
-    
- 
-  
-
-
   
  
   image(backGround[randomBG], width/2, height/2);

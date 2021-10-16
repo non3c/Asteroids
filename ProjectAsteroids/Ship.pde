@@ -108,7 +108,7 @@ class Ship extends GameObject{
     for (int i = 0; i < myObject.size(); i ++) {
      GameObject obj = myObject.get(i);
      
-     if (obj instanceof Asteroids || EnemyBullet) {
+     if (obj instanceof Asteroids) {
        if ( dist(pos.x, pos.y, obj.pos.x, obj.pos.y) <= obj.size/2 + size/2) {
          if (!immune) {
          lives--;

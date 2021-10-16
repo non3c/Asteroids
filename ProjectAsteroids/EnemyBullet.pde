@@ -4,7 +4,7 @@ class EnemyBullet extends GameObject {
   PVector nudge;
   
   EnemyBullet(float x, float y, float vx, float vy, PVector dir) {
-   killTimer = 60;
+   killTimer = 120;
    lives = 1; 
    pos = new PVector(x, y);
    vel = new PVector(vx, vy);
